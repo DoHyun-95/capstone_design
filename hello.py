@@ -5,5 +5,5 @@ app = Flask(__name__)
 def hello():
     return "Hello World"
 
-if __name__ == "__main__": #파이썬을 실행할때만 아래를 실행하라는 뜻임
+if __name__ == "__main__":
     app.run(port=7654)
