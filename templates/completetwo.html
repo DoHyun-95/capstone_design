@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html xmlns:margin-right="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>EV Car</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css') }}">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.min.css') }}">
+    <!-- Self CSS  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dh.css') }}">
+
+</head>
+<body>
+
+<header>
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+        <div class="container">
+
+            <!-- Brand -->
+            <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+                <strong class="blue-text">EV</strong>
+            </a>
+
+            <!-- Collapse -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <!-- Left -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link waves-effect" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="#first">About MDB</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect"
+                           href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
+                           target="_blank">Free download</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/"
+                           target="_blank">Free
+                            tutorials</a>
+                    </li>
+                </ul>
+
+                <!-- Right -->
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item">
+                        <a href="https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/mdbootstrap/bootstrap-material-design"
+                           class="nav-link border border-light rounded waves-effect"
+                           target="_blank">
+                            <i class="fab fa-github mr-2"></i>MDB GitHub
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <!-- Do something with the message -->
+            <h4>{{ message }}</h4>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<main class="mt-5 pt-5">
+    <div class="container">
+        <form id="upload-form" action="{{ url_for('color') }}" method="POST" enctype="multipart/form-data">
+
+            <strong>Files:</strong><br>
+            <input id="file-picker" type="file" name="file" accept="image/*" multiple>
+            <div id="msg"></div>
+            <input type="submit" value="RUN" id="upload-button">
+
+        </form>
+        <hr class="my-5">
+
+        <section class="wow fadeIn">
+
+            <div class="row text-left">
+
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12">
+
+                    <!--Image-->
+                    <div class="view overlay rounded z-depth-1-half mb-3">
+                        <img src=" {{ url_for('send_image', filename=image_name) }}" width="100%" height="100%">
+                        <a>
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+
+                    <!--Excerpt-->
+                    <div class="news-data">
+                        <a href="" class="light-blue-text">
+                            <h6>
+                                <i class="fas fa-car"></i>
+                                <strong> Original Image</strong>
+                            </h6>
+                        </a>
+                        <p>
+                            <strong>
+                                <i class="far fa-clock"></i> {{ time_data }}</strong>
+                        </p>
+                    </div>
+                    <h3>
+                        <a>
+                            <strong>Original Car Image</strong>
+                        </a>
+                    </h3>
+
+                    <!--/Featured news-->
+
+                    <!--/Small news-->
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12">
+
+                    <!--Image-->
+                    <div class="view overlay rounded z-depth-1-half mb-3">
+                        <img src=" {{ url_for('static', filename=savename) }}" width="100%" height="100%">
+                        <h5></h5>
+                        <a>
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+
+                    <!--Excerpt-->
+                    <div class="news-data">
+                        <a href="" class="light-blue-text">
+                            <h6>
+                                <i class="fas fa-car"></i>
+                                <strong> EV Plate Processing </strong>
+                            </h6>
+                        </a>
+                        <p>
+                            <strong>
+                                <i class="far fa-clock"></i> {{ time_data }}</strong>
+                        </p>
+                    </div>
+                    <h3>
+                        <a>
+                            <strong>This car is {{ car }}</strong>
+                        </a>
+                    </h3>
+
+                    <!--/Small news-->
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer class="page-footer text-center font-small mdb-color darken-2 mt-4 wow fadeIn">
+
+    <!--Call to action-->
+    <div class="pt-4">
+        <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
+           target="_blank"
+           role="button">Download MDB
+            <i class="fas fa-download ml-2"></i>
+        </a>
+        <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" target="_blank"
+           role="button">Start
+            free tutorial
+            <i class="fas fa-graduation-cap ml-2"></i>
+        </a>
+    </div>
+    <!--/.Call to action-->
+
+    <hr class="my-4">
+
+    <!-- Social icons -->
+    <div class="pb-4">
+        <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+            <i class="fab fa-facebook-f mr-3"></i>
+        </a>
+
+        <a href="https://twitter.com/MDBootstrap" target="_blank">
+            <i class="fab fa-twitter mr-3"></i>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
+            <i class="fab fa-youtube mr-3"></i>
+        </a>
+
+        <a href="https://plus.google.com/u/0/b/107863090883699620484" target="_blank">
+            <i class="fab fa-google-plus-g mr-3"></i>
+        </a>
+
+        <a href="https://dribbble.com/mdbootstrap" target="_blank">
+            <i class="fab fa-dribbble mr-3"></i>
+        </a>
+
+        <a href="https://pinterest.com/mdbootstrap" target="_blank">
+            <i class="fab fa-pinterest mr-3"></i>
+        </a>
+
+        <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
+            <i class="fab fa-github mr-3"></i>
+        </a>
+
+        <a href="http://codepen.io/mdbootstrap/" target="_blank">
+            <i class="fab fa-codepen mr-3"></i>
+        </a>
+    </div>
+    <!-- Social icons -->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+        © 2019 Copyright:
+        <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com </a>
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<script src="{{ url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+<!-- Bootstrap tooltips -->
+<script src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+<!-- MDB core JavaScript -->
+<script src="{{ url_for('static',filename='js/mdb.min.j') }}"></script>
+<!-- Initializations -->
+<script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+</script>
+</body>
+<script>
+
+    $("#file-picker").change(function () {
+        var fileSize = 0;
+        var minSize = 5 * 1024 * 1024  //50kb
+        var input = document.getElementById('file-picker');
+        var browser = navigator.appName;
+        var str
+        // 익스플로러일 경우
+        if (browser == "Microsoft Internet Explorer") {
+            var oas = new ActiveXObject("Scripting.FileSystemObject");
+            fileSize = oas.getFile(file.value).size;
+        }
+        // 익스플로러가 아닐경우
+        else {
+            fileSize = file.files[0].size;
+        }
+
+        for (var i = 0; i < input.files.length; i++) {
+            //koala.jpg, koala.JPG substring(index) lastIndexOf('a') koala.1.jpg
+            var ext = input.files[i].name.substring(input.files[i].name.lastIndexOf('.') + 1).toLowerCase()
+            if ((ext == 'jpg') || (ext == 'png')) {
+                if (fileSize > minSize) {
+                    $("#msg").text("Files are supported")
+                } else {
+                    fileSize = fileSize / 1024;
+                    fileSize = (fixed === undefined) ? fileSize : fileSize.toFixed(fixed);
+                    str = commaNum(fileSize) + ' KB';
+                    $("#msg").text("이미지 크기가" + str + "입니다. 50KB 이상의 높은 화질의 이미지를 올려주세요.")
+                }
+            } else {
+                $("#msg").text("Files are NOT supported")
+                document.getElementById("file-picker").value = "";
+            }
+        }
+    });
+
+
+</script>
+</html>
